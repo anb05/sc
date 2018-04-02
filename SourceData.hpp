@@ -9,7 +9,7 @@ class SourceData
     public:
         // Используются конструктор и деструктор умолчаний
         SourceData();
-        ~SourceData();
+        virtual ~SourceData();
 
         // чисто абстрактные методы доступа
         virtual void extractData(string sourceName) = 0;

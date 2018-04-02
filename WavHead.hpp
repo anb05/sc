@@ -13,6 +13,7 @@ class WavHead : public SourceHead
 {
     public:
         WavHead(void);
+        WavHead(string sourceName);
         ~WavHead(void);
 
         // Переопределяем абстрактные методы
@@ -23,28 +24,29 @@ class WavHead : public SourceHead
         // WAV - формат начинается с RIFF - заголовка
         // Содержит символы "RIFF" в ASCII кодировке
         // первые 4 байта (0x52494646 в big-endian представлении)
-        string            chunkId;
+        //string chunkId;
+        char chunkId[4];
 
         // 36 + subchunk2Size, или более точно:
         // 4 + (8 + subchunk1Size) + (8 + subchunk2Size)
         // Это оставшийся размер цепочки, начиная с этой позиции.
         // Иначе говоря, это размер файла - 8, то есть,
         // исключены поля chunkId и chunkSize.
-        unsigned long int chunkSize;
+        unsigned int chunkSize;
 
         // Содержит символы "WAVE"
         // (0x57415645 в big-endian представлении)
-        string            format;
+        char format[4];
 
         // Формат "WAVE" состоит из двух подцепочек: "fmt " и "data":
         // Подцепочка "fmt " описывает формат звуковых данных:
         // Содержит символы "fmt "
         // (0x666d7420 в big-endian представлении)
-        string            subchunk1Id;
+        char subchunk1Id[4];
 
         // 16 для формата PCM.
         // Это оставшийся размер подцепочки, начиная с этой позиции.
-        unsigned long int subchunk1Size;
+        unsigned int subchunk1Size;
 
         // Аудио формат, полный список можно получить здесь http://audiocoding.ru/wav_formats.txt
         // Для PCM = 1 (то есть, Линейное квантование).
@@ -52,13 +54,13 @@ class WavHead : public SourceHead
         unsigned short int audioFormat;
 
         // Количество каналов. Моно = 1, Стерео = 2 и т.д.
-        unsigned short numChannels;
+        unsigned short int numChannels;
 
         // Частота дискретизации. 8000 Гц, 44100 Гц и т.д.
-        unsigned long sampleRate;
+        unsigned int sampleRate;
 
         // sampleRate * numChannels * bitsPerSample/8
-        unsigned long int byteRate;
+        unsigned int byteRate;
 
         // numChannels * bitsPerSample/8
         // Количество байт для одного сэмпла, включая все каналы.
@@ -75,5 +77,8 @@ class WavHead : public SourceHead
 
         // numSamples * numChannels * bitsPerSample/8
         // Количество байт в области данных.
-        unsigned long subchunk2Size;
+        unsigned int subchunk2Size;
+
+        // Методы
+
 };
