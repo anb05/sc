@@ -1,3 +1,4 @@
+// SourceHead.hpp
 // Абстрактный класс, определяющий общий интерфейс для анализа заголовков всех истночников анализа
 
 #ifndef SOURCEHEAD_H
@@ -14,8 +15,10 @@ class SourceHead
         SourceHead();
         virtual ~SourceHead();
 
-        virtual void   setHeadData(string sourceName) = 0;
-        virtual string getSourceType(void) = 0;
+        virtual void   setHeadData(string sourceName)  = 0;
+        virtual string getSourceType(void)       const = 0;
+        virtual unsigned int getDataLength(void) const = 0;
+        virtual unsigned int getDataBegin(void)  const = 0;
 
     private:
 };

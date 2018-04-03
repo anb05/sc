@@ -16,18 +16,47 @@ int main(int argc, char const* argv[])
     cout << "SOURCEDATA = " << SOURCEDATA << endl;
     cout << "SOURCETYPE = " << SOURCETYPE << endl;
 
-    AnalyzedData* aData = new AnalyzedData(sourceName, sT);
+    try {
+        //AnalyzedData* aData = new AnalyzedData("other", streamOS);
+        //AnalyzedData* aData = new AnalyzedData(sourceName, sT);
+        AnalyzedData* aData = new AnalyzedData();
 
-    cout << "Type data: " << aData->getType() << endl;
-    cout << "Source name: " << aData->getSourceName() << endl;
+        cout << "Type data: " << aData->getType() << endl;
+        cout << "Source name: " << aData->getSourceName() << endl;
 
+        cout << "Begin Data adres = " << aData->getBegin() << endl;
+        cout << "Data length = " <<  aData->getDataLength() << endl;
+
+        delete aData;
+
+    } catch (int numExp) {
+        switch (numExp) {
+            case 101:
+                cout << "The source is not exists!" << endl;
+                return 101;
+                break;
+
+            case 201:
+                cout << "Do not created copy of AnalyzedData Object" << endl;
+                return 201;
+                break;
+
+            case 202:
+                cout << "The stream inputs is not created" << endl;
+                return 202;
+
+            default:
+                return 1;
+        }
+    }
+
+/*
     SourceHead* pntSourceHead = new WavHead();
     pntSourceHead->setHeadData(sourceName);
     
     cout << pntSourceHead->getSourceType() << endl;
 
     delete pntSourceHead;
-/*
     aData->setType(streamOS);
     cout << "Type data: " << aData->getType() << endl;
     cout << "Source name: " << aData->getSourceName() << endl;
@@ -41,7 +70,6 @@ int main(int argc, char const* argv[])
     cout << "cC = " << cC << "sizeof(cC) = " << sizeof(cC) << endl;
 
 */
-
 
     return 0;
 }

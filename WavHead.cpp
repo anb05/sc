@@ -1,10 +1,20 @@
 #include "./WavHead.hpp"
 #include <fstream>
+#include "./ConstAndVar.hpp"
 
 using std::ifstream;
 using std::ios;
 
-WavHead::WavHead() {}
+WavHead::WavHead() {
+//    string sourceName = SOURCEDATA;
+//    Source sT = SOURCETYPE;
+}
+
+WavHead::WavHead(string sourceName)
+{
+    setHeadData(sourceName);
+}
+
 WavHead::~WavHead() {}
 
 void WavHead::setHeadData(string fileName)
@@ -60,7 +70,7 @@ void WavHead::setHeadData(string fileName)
     isf.close();
 }
 
-string WavHead::getSourceType(void)
+string WavHead::getSourceType(void) const
 {
     cout << "sizeof(chunkId) = " << sizeof(chunkId) << endl;
     int i = 0;
@@ -113,4 +123,13 @@ string WavHead::getSourceType(void)
     return "WAVE";
 }
 
+unsigned int WavHead::getDataLength(void) const
+{
+    return subchunk2Size;
+}
+
+unsigned int WavHead::getDataBegin(void) const
+{
+    return wavHeadLength;
+}
 

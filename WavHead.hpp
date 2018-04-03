@@ -1,5 +1,8 @@
 // В класс для хранения и обработки заголока WAV файла
 
+#ifndef WAVHEAD_H
+#define WAVHEAD_H
+
 #include <string>
 #include <iostream>
 #include "./SourceHead.hpp"
@@ -18,9 +21,22 @@ class WavHead : public SourceHead
 
         // Переопределяем абстрактные методы
         void   setHeadData(string fullFileName);
-        string getSourceType(void);
+        string getSourceType(void) const;
+
+        // Возвращает величину области WAV данных в байтах
+        unsigned int getDataLength(void) const;
+
+        // Возвращает длину заголовка WAV файла.
+        // Начиная с этого адреса в файле следуют
+        // непосредственно данные
+        unsigned int getDataBegin(void) const;
 
     private:
+        // Стандартная длина заголовка WAV файла
+        // составляет 44 байта
+        // затем следуют непосредственно wav данные
+        const unsigned short int wavHeadLength = 44;
+
         // WAV - формат начинается с RIFF - заголовка
         // Содержит символы "RIFF" в ASCII кодировке
         // первые 4 байта (0x52494646 в big-endian представлении)
@@ -82,3 +98,4 @@ class WavHead : public SourceHead
         // Методы
 
 };
+#endif
