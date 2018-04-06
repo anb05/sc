@@ -52,7 +52,7 @@ AnalyzedData::~AnalyzedData()
 }
 
 // Оператор копирования
-AnalyzedData AnalyzedData::operator= (const AnalyzedData &rhv)
+AnalyzedData& AnalyzedData::operator= (const AnalyzedData &rhv)
 {
     if (this != &rhv) {
     /*************  ЗАГЛУШКА  ************************************************************/
@@ -124,6 +124,7 @@ void AnalyzedData::readSource(void)
 {
     if (file == sourceType) {
         itsHead = new WavHead(sourceName);
+        itsData = new WavRaw(sourceName, getBegin(), getDataLength());
     }
     else if (streamOS == sourceType) {
         throw 202;

@@ -5,3 +5,7 @@
 #ifndef SOURCETYPE
 #define SOURCETYPE file
 #endif
+
+#ifndef SOURCEBPS
+#define SOURCEBPS 16
+#endif

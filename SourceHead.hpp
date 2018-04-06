@@ -15,10 +15,11 @@ class SourceHead
         SourceHead();
         virtual ~SourceHead();
 
-        virtual void   setHeadData(string sourceName)  = 0;
-        virtual string getSourceType(void)       const = 0;
-        virtual unsigned int getDataLength(void) const = 0;
-        virtual unsigned int getDataBegin(void)  const = 0;
+        virtual void           setHeadData(string sourceName)  = 0;
+        virtual string         getSourceType(void)       const = 0;
+        virtual unsigned int   getDataLength(void)       const = 0;
+        virtual unsigned int   getDataBegin(void)        const = 0;
+        virtual unsigned short getBPS(void)              const = 0;
 
     private:
 };

@@ -7,6 +7,7 @@
 #include "./SourceData.hpp"
 #include "./ConstAndVar.hpp"
 #include "./WavHead.hpp"
+#include "./WavRaw.hpp"
 
 using std::string;
 using std::ifstream;
@@ -26,7 +27,7 @@ class AnalyzedData
         ~AnalyzedData(void);
 
         // Операторы 
-        AnalyzedData operator= (const AnalyzedData &rhv);
+        AnalyzedData& operator= (const AnalyzedData &rhv);
 
         // Методы доступа к полям
         void   setType(Source typeDS);
@@ -40,11 +41,12 @@ class AnalyzedData
         unsigned int getBegin(void) const;
 
     private:
-        Source      sourceType;
-        string      sourceName;
-        SourceHead* itsHead;
-        SourceData* itsData;
-        int         dataLen; 
+        Source             sourceType;
+        string             sourceName;
+        SourceHead*        itsHead;
+        SourceData*        itsData;
+        unsigned short int dataLen; 
+        unsigned short int bps;
 
         bool isSourceExists(const string sourceName) const;
         void readSource(void);

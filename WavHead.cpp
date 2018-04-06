@@ -133,3 +133,8 @@ unsigned int WavHead::getDataBegin(void) const
     return wavHeadLength;
 }
 
+unsigned short int WavHead::getBPS(void) const
+{
+    return bitsPerSample;
+}
+

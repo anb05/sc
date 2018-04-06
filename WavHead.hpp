@@ -31,6 +31,9 @@ class WavHead : public SourceHead
         // непосредственно данные
         unsigned int getDataBegin(void) const;
 
+        // Возвращает количество бит в сэмпле
+        unsigned short int getBPS(void) const;
+
     private:
         // Стандартная длина заголовка WAV файла
         // составляет 44 байта
