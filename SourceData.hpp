@@ -24,19 +24,19 @@ class SourceData
         // Во входных параметрах передаётся:
         //     - источник данных - sourceName;
         //     - адрес (смещение) с которого начинать считывать;
-        //     - количество данных которое необходимо считать.
+        //     - количество данных которое необходимо считать байт.
         virtual void extractData(string sourceName, unsigned int addres, unsigned int length) = 0;
 
         // Метод возвращает адрес на извлечённую битовую последовательность
         //virtual T* readAllData() const = 0;
-        virtual char* readAllData() const = 0;
+        virtual short* readAllData() const = 0;
 
         // Метод создаёт в области кэш памяти новый массив с выбранными элементами:
         //     - адрес (смещение) с которого начинать считывать, по умолчанию НУЛЬ;
         //     - длина отдаваемого фрагмента, по умолчанию весь фрагмент
         // и возвращает его адрес
         //virtual T* readChunk(unsigned int offset, unsigned int length) = 0;
-        virtual char* readChunk(unsigned int offset, unsigned int length) = 0;
+        virtual short& readChunk(unsigned int offset, unsigned int length) = 0;
 
     private:
 
